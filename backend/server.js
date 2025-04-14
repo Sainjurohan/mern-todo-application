@@ -17,8 +17,10 @@ mongoose.set('strictQuery', true);
 app.use(express.json())
 app.use(cors())
 
+const mongoURI = process.env.MONGO_URI || 'mongodb://localhost:27017/mern-todo';
+
 //db config
-mongoose.connect(process.env.MONGO_URI, {
+mongoose.connect(mongoURI, {
     useNewUrlParser: true,
 }, (err) => {
     if (err) {
