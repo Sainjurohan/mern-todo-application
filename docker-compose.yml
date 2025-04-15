@@ -3,21 +3,21 @@ services:
     image: mongo:6.0
     container_name: mongo
     ports:
-      -"27017:27017"
+      - "27017:27017"
     volumes:
-      -mongo-data:/data/db
+      - mongo-data:/data/db
   
   backend:
     build: 
       context: ./backend
-      dockerfile: dockerfile
+      dockerfile: Dockerfile
     container_name: mern-backend
     ports:
       - "5000:5000"
     depends_on:
       - mongo
     environment:
-      - MONGO_URI="mongodb://localhost:27017/mern-todo"
+      - MONGO_URI=mongodb://mongo:27017/mern-todo
     restart: unless-stopped
 
   frontend:
